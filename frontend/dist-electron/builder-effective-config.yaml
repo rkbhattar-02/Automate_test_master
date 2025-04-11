@@ -1,0 +1,27 @@
+directories:
+  output: dist-electron
+  buildResources: build
+appId: com.testmanager.app
+productName: Test Manager
+files:
+  - filter:
+      - dist/**/*
+      - electron/**/*
+      - backend/**/*
+mac:
+  category: public.app-category.developer-tools
+  target:
+    - dmg
+win:
+  target:
+    - nsis
+linux:
+  target:
+    - AppImage
+  category: Development
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+electronVersion: 29.4.6

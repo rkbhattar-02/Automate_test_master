@@ -1,0 +1,112 @@
+{
+  "name": "test-manager",
+  "productName": "Test Manager",
+  "description": "A comprehensive test management application with automated test execution capabilities",
+  "author": {
+    "name": "Test Manager Team",
+    "email": "support@testmanager.com"
+  },
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"vite\"",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "backend": "node backend/server.js",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "electron:dev": "concurrently \"npm run dev\" \"electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:make": "electron-builder -w",
+    "init:workspace": "node scripts/init-workspace.js"
+  },
+  "build": {
+    "appId": "com.testmanager.app",
+    "productName": "Test Manager",
+    "directories": {
+      "output": "dist-electron",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "backend/**/*",
+      "workspace/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/icon.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "publisherName": "Test Manager Team"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "${productName}",
+      "uninstallDisplayName": "${productName}",
+      "installerIcon": "public/icon.ico",
+      "uninstallerIcon": "public/icon.ico",
+      "installerHeaderIcon": "public/icon.ico",
+      "license": "LICENSE",
+      "allowElevation": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": true,
+      "displayLanguageSelector": false,
+      "installerLanguages": ["en-US"],
+      "multiLanguageInstaller": false,
+      "packElevateHelper": true,
+      "perMachine": false,
+      "differentialPackage": true
+    },
+    "asar": true,
+    "compression": "maximum",
+    "removePackageScripts": true,
+    "removePackageKeywords": true
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "electron-serve": "^1.3.0",
+    "electron-store": "^8.2.0",
+    "express": "^4.18.2",
+    "fs-extra": "^11.3.0",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.56.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.3.1",
+    "autoprefixer": "^10.4.18",
+    "electron": "^29.1.0",
+    "electron-builder": "^24.12.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "globals": "^15.1.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^7.0.2",
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1"
+  }
+}
