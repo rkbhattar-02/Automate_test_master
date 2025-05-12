@@ -1,7 +1,9 @@
 import axios from 'axios';
 import type { TestSet, TestCase } from '../types';
 
-const API_URL = 'http://localhost:5001/api';
+//const API_URL = 'http://localhost:5001/api'
+
+const API_URL = 'http://localhost:8000/api';
 
 // Test Set API
 export const getTestSets = async (): Promise<TestSet[]> => {
